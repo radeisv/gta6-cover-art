@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA 6 Cover Art Studio</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VI</span>
+    <div>
+      <h1>GTA 6 Cover Art Studio</h1>
+      <p>Turn any photo into a Vice City poster. Three steps, one PNG.</p>
+    </div>
+  </div>
+  <ol class="steps">
+    <li><b>1</b> Pick a photo</li>
+    <li><b>2</b> Pick a style</li>
+    <li><b>3</b> Export PNG</li>
+  </ol>
+</header>
+
+<main class="studio">
+  <section class="panel" aria-label="Controls">
+    <h2>Photos</h2>
+    <div class="apply-row">
+      <span>Clicking a photo applies it to:</span>
+      <label class="radio"><input type="radio" name="applyTo" value="all" checked> All panels</label>
+      <label class="radio"><input type="radio" name="applyTo" value="selected"> Selected panel</label>
+    </div>
+    <div id="samples" class="samples" role="listbox" aria-label="Built-in sample portraits"></div>
+    <div class="btn-row">
+      <button id="addPhotos" class="btn primary" type="button">+ Add photos</button>
+      <button id="autoFill" class="btn" type="button">Auto-fill panels</button>
+    </div>
+    <input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+    <p class="hint">Or drop a photo on the cover — JPG, PNG, WebP.</p>
+
+    <div class="panel-cols">
+      <div class="pcol">
+        <h2>Style preset</h2>
+        <div class="presets" id="presets">
+          <button type="button" data-preset="sunset" class="preset active">Vice Sunset</button>
+          <button type="button" data-preset="neon" class="preset">Neon Nightlife</button>
+          <button type="button" data-preset="collage" class="preset">Classic Box Collage</button>
+          <button type="button" data-preset="miami" class="preset">Miami Heat</button>
+        </div>
+
+        <h2>Layout</h2>
+        <div class="segmented" id="layoutSeg">
+          <button type="button" data-layout="hero" class="seg active">Hero Poster</button>
+          <button type="button" data-layout="collage" class="seg">Collage</button>
+        </div>
+
+        <h2>Illustration</h2>
+        <label class="slider">Illustration Strength <span id="illustrationVal">70%</span>
+          <input id="illustration" type="range" min="0" max="100" value="70"></label>
+        <label class="slider">Ink Outline <span id="inkVal">65%</span>
+          <input id="ink" type="range" min="0" max="100" value="65"></label>
+        <label class="slider">Sunset Rim Light <span id="rimVal">60%</span>
+          <input id="rim" type="range" min="0" max="100" value="60"></label>
+
+        <h2>Badges</h2>
+        <div class="badges-grid">
+          <label class="check"><input id="badgeM" type="checkbox" checked> M rating</label>
+          <label class="check"><input id="badgeVice" type="checkbox" checked> VICE CITY</label>
+          <label class="check"><input id="badgeRibbon" type="checkbox" checked> LEONIDA ribbon</label>
+          <label class="check"><input id="badgeBurst" type="checkbox" checked> NEW burst</label>
+        </div>
+      </div>
+
+      <div class="pcol">
+        <h2>Photo position</h2>
+        <label class="slider">Zoom <span id="zoomVal">100%</span>
+          <input id="zoom" type="range" min="50" max="250" value="100"></label>
+        <label class="slider">Pan X <span id="panXVal">0</span>
+          <input id="panX" type="range" min="-100" max="100" value="0"></label>
+        <label class="slider">Pan Y <span id="panYVal">0</span>
+          <input id="panY" type="range" min="-100" max="100" value="0"></label>
+        <label class="check"><input id="flip" type="checkbox"> Mirror / Flip photo</label>
+
+        <h2>Caption</h2>
+        <label class="field">Main caption
+          <input id="caption" type="text" maxlength="40" value="WELCOME TO LEONIDA"></label>
+        <div class="field-row2">
+          <label class="field">Position
+            <select id="captionPos">
+              <option value="bottom" selected>Bottom</option>
+              <option value="top">Top</option>
+              <option value="corner">Corner</option>
+            </select></label>
+          <label class="field">Neon colour
+            <select id="captionColor">
+              <option value="#ffd166" selected>Sun Gold</option>
+              <option value="#ff2a85">Neon Pink</option>
+              <option value="#00f0ff">Electric Cyan</option>
+              <option value="#ffffff">White</option>
+            </select></label>
+        </div>
+        <label class="slider">Caption size <span id="captionSizeVal">100%</span>
+          <input id="captionSize" type="range" min="60" max="140" value="100"></label>
+      </div>
+    </div>
+
+    <h2>Export size</h2>
+    <div class="segmented" id="sizeSeg">
+      <button type="button" data-size="1080x1080" class="seg">1080 × 1080</button>
+      <button type="button" data-size="1080x1350" class="seg active">1080 × 1350</button>
+      <button type="button" data-size="1920x1080" class="seg">1920 × 1080</button>
+    </div>
+    <button id="export" class="btn export" type="button">Export PNG</button>
+    <p id="status" role="status">Loading the studio…</p>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <div id="dropZone" class="dropzone">
+      <canvas id="cover" width="1080" height="1350" aria-label="The cover art"></canvas>
+      <p class="drop-hint">Drop a photo here to replace the selected panel</p>
+    </div>
+    <p class="stage-hint">Click a panel to select it — drag to move the photo, scroll to zoom. Click a sample photo on the left to fill the cover.</p>
+  </section>
+</main>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

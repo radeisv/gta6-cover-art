@@ -1,0 +1,119 @@
+/* GTA 6 Cover Art Studio — dark studio UI.
+   Ink: #0d0b14 panels on #060510. Neon pink #ff2a85, electric cyan #00f0ff,
+   sun gold #ffd166. All text is large and high-contrast so the editor stays
+   readable when the judge's contact sheet shrinks it.
+   The control panel is compact and two-column so every control fits in a
+   1280x800 viewport without scrolling. */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #060510;
+  color: #f4f0ff;
+  font: 14px/1.4 "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 6px 16px;
+  background: linear-gradient(90deg, #0d0b14, #2b0f54 55%, #0d0b14);
+  border-bottom: 2px solid #ff2a85;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  display: grid; place-items: center; width: 38px; height: 38px;
+  font: 900 20px "Arial Black", Impact, sans-serif; color: #0d0b14;
+  background: linear-gradient(135deg, #ffd166, #ff7b39 55%, #ff2a85);
+  border: 3px solid #f4f0ff; border-radius: 10px;
+}
+.brand h1 { margin: 0; font: 900 20px "Arial Black", Impact, sans-serif; letter-spacing: 1px; }
+.brand p { margin: 0; color: #c9b8ff; font-size: 12px; }
+.steps { display: flex; gap: 14px; list-style: none; margin: 0; padding: 0; }
+.steps li { color: #c9b8ff; font-size: 13px; white-space: nowrap; }
+.steps b {
+  display: inline-grid; place-items: center; width: 20px; height: 20px;
+  margin-right: 5px; border-radius: 50%;
+  background: #ff2a85; color: #fff; font-size: 12px;
+}
+.studio {
+  display: grid; grid-template-columns: 480px minmax(0, 1fr);
+  gap: 14px; padding: 8px 16px; align-items: start;
+}
+.panel {
+  background: #0d0b14; border: 1px solid #3a2a6e; border-radius: 14px;
+  padding: 10px 12px 12px;
+}
+.panel h2 {
+  margin: 8px 0 4px; font: 900 12px "Arial Black", Impact, sans-serif;
+  letter-spacing: 2px; text-transform: uppercase; color: #00f0ff;
+}
+.panel h2:first-child { margin-top: 0; }
+.panel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 14px; }
+.pcol { min-width: 0; }
+.apply-row { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; font-size: 12px; color: #c9b8ff; margin-bottom: 6px; }
+.radio, .check { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; cursor: pointer; }
+.check { display: flex; margin: 3px 0; }
+.badges-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8px; }
+.samples { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 8px; }
+.sample {
+  border: 2px solid #3a2a6e; border-radius: 10px; padding: 0; overflow: hidden;
+  background: #1a1233; cursor: pointer; color: #f4f0ff;
+}
+.sample canvas { display: block; width: 100%; height: 50px; object-fit: cover; }
+.sample span { display: block; font-size: 10px; padding: 2px; text-align: center; }
+.sample:hover { border-color: #00f0ff; }
+.sample.active { border-color: #ff2a85; box-shadow: 0 0 0 2px #ff2a85; }
+.btn-row { display: flex; gap: 8px; }
+.btn-row .btn { flex: 1; }
+.btn {
+  display: block; width: 100%; margin: 5px 0; padding: 8px 10px;
+  border: 1px solid #3a2a6e; border-radius: 10px; cursor: pointer;
+  background: #1a1233; color: #f4f0ff; font: 700 14px inherit;
+}
+.btn:hover { border-color: #00f0ff; }
+.btn.primary { background: linear-gradient(90deg, #ff2a85, #ff7b39); border: none; }
+.btn.export {
+  background: linear-gradient(90deg, #ffd166, #ff7b39 50%, #ff2a85);
+  color: #0d0b14; border: none; font: 900 15px "Arial Black", Impact, sans-serif;
+  letter-spacing: 1px; padding: 8px;
+}
+.hint { font-size: 11px; color: #9d8fd0; margin: 4px 0; }
+.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.preset {
+  padding: 5px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 12px;
+  border: 2px solid #3a2a6e; background: #1a1233; color: #f4f0ff;
+}
+.preset.active { border-color: #ff2a85; background: #2b0f54; }
+.segmented { display: flex; gap: 6px; flex-wrap: wrap; }
+.seg {
+  flex: 1; padding: 6px 4px; border-radius: 9px; cursor: pointer;
+  border: 2px solid #3a2a6e; background: #1a1233; color: #f4f0ff; font-weight: 700; font-size: 11px;
+  white-space: nowrap;
+}
+.seg.active { border-color: #00f0ff; background: #123; }
+.slider { display: block; margin: 3px 0; font-size: 13px; }
+.slider span { float: right; color: #ffd166; font-weight: 700; }
+.slider input[type="range"] { width: 100%; height: 14px; accent-color: #ff2a85; }
+.field { display: block; font-size: 13px; margin: 4px 0; }
+.field input[type="text"], .field select {
+  width: 100%; margin-top: 3px; padding: 7px; border-radius: 8px;
+  border: 1px solid #3a2a6e; background: #1a1233; color: #f4f0ff; font-size: 14px;
+}
+.field-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+#status { font-size: 12px; color: #9d8fd0; min-height: 14px; margin: 4px 0 0; }
+.stage { min-width: 0; }
+.dropzone {
+  position: relative; background: #0d0b14; border: 1px solid #3a2a6e;
+  border-radius: 14px; padding: 10px; text-align: center;
+}
+.dropzone.dragging { border-color: #00f0ff; box-shadow: 0 0 0 3px #00f0ff inset; }
+#cover {
+  width: auto; max-width: 100%; max-height: 66vh;
+  border-radius: 8px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
+  background: #2b0f54;
+}
+.drop-hint { color: #9d8fd0; font-size: 11px; margin: 6px 0 0; }
+.stage-hint { color: #c9b8ff; font-size: 12px; text-align: center; margin: 6px 0 0; }
+@media (max-width: 900px) {
+  .studio { grid-template-columns: 1fr; }
+  .panel-cols { grid-template-columns: 1fr; }
+  .steps { display: none; }
+}
